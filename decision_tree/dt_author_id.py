@@ -20,10 +20,21 @@ from email_preprocess import preprocess
 features_train, features_test, labels_train, labels_test = preprocess()
 
 
+#features_train = features_train[:len(features_train)/100]
+#labels_train = labels_train[:len(labels_train) / 100]
 
+print features_train.shape
 
 #########################################################
 ### your code goes here ###
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+clf = DecisionTreeClassifier(min_samples_split = 40).fit(features_train, labels_train)
+
+print clf.n_features_
+pred = clf.predict(features_test)
+
+print accuracy_score(pred, labels_test)
 
 
 #########################################################
